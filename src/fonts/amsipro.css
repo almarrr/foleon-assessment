@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "amsipro";
+  src: url("./AmsiPro-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: auto;
+}
+
+@font-face {
+  font-family: "amsipro";
+  src: url("./AmsiPro-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+}
+
+@font-face {
+  font-family: "amsipro";
+  src: url("./AmsiPro-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: auto;
+}

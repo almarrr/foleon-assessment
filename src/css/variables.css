@@ -1,0 +1,8 @@
+:root {
+  --headingfont: "amsipro";
+  --bodyfont: "amsipro";
+  --primary: #42dafe;
+  --light: rgb(245, 245, 245);
+  --dark: #031f4f;
+  --muted: #b1b4bb;
+}

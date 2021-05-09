@@ -1,0 +1,45 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@import "./fonts.css";
+@import "./variables.css";
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: var(--bodyfont);
+  color: var(--dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--headingfont);
+  font-weight: bold;
+}
+
+*:focus {
+  outline: none;
+}
+
+.container {
+  max-width: 128rem;
+}
+
+@import "./pagination.css";
