@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import api from "../api/_api";
 import { IParams, IPublication } from "../interfaces/interfaces";
 import Input from "./General/Input";
 
 import { useDebounce } from "use-debounce";
-import Flex from "./General/Flex";
 
 import SearchResultItem from "./SearchResultItem";
 import Spinner from "./General/Spinner";
@@ -26,15 +25,7 @@ const Search = () => {
 
   const [searching, setSearching] = useState<boolean>(false);
 
-  useEffect(() => {
-    debouncedTerm.length > 2 && getResults();
-  }, [debouncedTerm]);
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTerm(e.currentTarget.value);
-  };
-
-  const getResults = async () => {
+  const getResults = useCallback(async () => {
     setSearching(true);
 
     const reqParams: IParams = {
@@ -64,6 +55,14 @@ const Search = () => {
     }, 500);
 
     setResults(result["_embedded"]["edition"]);
+  }, [debouncedTerm]);
+
+  useEffect(() => {
+    debouncedTerm.length > 2 && getResults();
+  }, [debouncedTerm, getResults]);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTerm(e.currentTarget.value);
   };
 
   return (

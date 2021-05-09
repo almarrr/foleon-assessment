@@ -11,7 +11,7 @@ const Footer = () => {
             <div className="opacity-50 font-bold uppercase text-size-14 pb-4">
               Powered by
             </div>
-            <a href="https://foleon.com" target="_blank">
+            <a href="https://foleon.com" rel="noreferrer" target="_blank">
               <Logo />
             </a>
           </div>

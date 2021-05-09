@@ -1,5 +1,5 @@
 import { IParams } from "./../interfaces/interfaces";
-import { IFilter } from "../interfaces/interfaces";
+
 import api from "./_api";
 
 import qs from "qs";

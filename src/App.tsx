@@ -8,7 +8,7 @@ import "./css/app.css";
 import Project from "./pages/Project";
 
 import bg from "./assets/bg.svg";
-import Flex from "./components/General/Flex";
+
 import { ScrollToTop } from "./components/General/ScrollToTop";
 import Footer from "./components/Sections/Footer";
 

@@ -34,14 +34,14 @@ const Project = () => {
 
   const { id } = useParams<ParamTypes>();
 
-  const getProject = async () => {
+  const getProject = useCallback(async () => {
     const result = await api.request({
       endpoint: `${CONFIG.API.ENDPOINTS.PROJECT.get}${id}`,
       method: `GET`,
     });
 
     setProject(result);
-  };
+  }, [id]);
 
   useEffect(() => {
     setCategories([
@@ -96,7 +96,7 @@ const Project = () => {
     if (id !== undefined) {
       getProject();
     }
-  }, [id]);
+  }, [id, getProject]);
 
   return (
     <section className="my-32">

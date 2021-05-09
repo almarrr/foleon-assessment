@@ -4,6 +4,8 @@ import { IPublication } from "../../interfaces/interfaces";
 import Flex from "./Flex";
 import Title from "./Title";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 interface IModalContent {
   id: string;
 
@@ -17,17 +19,16 @@ const ModalContent: React.FC<IModalContent> = (props) => {
 
   const image: string = `https://images.unsplash.com/photo-1617484038571-c999581a7f12?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80`;
 
-  const content = `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus perspiciatis dolore optio cumque, exercitationem sint? Eum perferendis suscipit fugiat architecto.`;
+  const content: string = `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus perspiciatis dolore optio cumque, exercitationem sint? Eum perferendis suscipit fugiat architecto.`;
 
   useEffect(() => {
     const getPublication = async () => {
       const result = await api.publication.get({ id });
-
       setPublication(result);
     };
 
     getPublication();
-  }, []);
+  }, [id]);
 
   if (publication === null) {
     return <React.Fragment></React.Fragment>;
@@ -38,7 +39,7 @@ const ModalContent: React.FC<IModalContent> = (props) => {
       className="bg-white container px-0 my-40 rounded-lg shadow-theme overflow-hidden"
       style={{ maxWidth: 800 }}
     >
-      <img
+      <LazyLoadImage
         style={{ height: 400 }}
         src={image}
         className="w-full object-cover object-center"

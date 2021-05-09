@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 import api from "../api/_api";
 import { IParams, IProject } from "../interfaces/interfaces";
@@ -15,29 +15,34 @@ const Projects: React.FC = () => {
 
   const [progress, setProgress] = useState<number>(0);
 
-  const params: IParams = {
-    page: 1,
-    limit: 20,
-    "order-by": [
-      {
-        field: "name",
-        type: "field",
-        direction: "ASC",
-      },
-    ],
-  };
+  const params: IParams = useMemo(() => {
+    return {
+      page: 1,
+      limit: 20,
+      "order-by": [
+        {
+          field: "name",
+          type: "field",
+          direction: "ASC",
+        },
+      ],
+    };
+  }, []);
 
-  const getProjects = async (data: IParams) => {
-    setProgress(50);
-    const result = await api.projects.all(params);
+  const getProjects = useCallback(
+    async (data: IParams) => {
+      setProgress(50);
+      const result = await api.projects.all(params);
 
-    setProjects(result["_embedded"]["title"]);
-    setProgress(100);
-  };
+      setProjects(result["_embedded"]["title"]);
+      setProgress(100);
+    },
+    [params]
+  );
 
   useEffect(() => {
     getProjects(params);
-  }, []);
+  }, [params, getProjects]);
 
   return (
     <>
