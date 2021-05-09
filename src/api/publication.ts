@@ -1,4 +1,3 @@
-import qs from "qs";
 import api from "./_api";
 
 const publication = {

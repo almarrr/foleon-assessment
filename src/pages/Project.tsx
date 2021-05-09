@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api/_api";
 import { IGetProjectPublications } from "../api/project";
@@ -54,7 +54,7 @@ const Project = () => {
     ]);
   }, []);
 
-  const getPublications = async () => {
+  const getPublications = useCallback(async () => {
     setProgress(50);
     if (project !== null) {
       const params: IGetProjectPublications = {
@@ -69,11 +69,28 @@ const Project = () => {
 
       setProgress(100);
     }
-  };
+  }, [project, activePage, activeCategory]);
+
+  // const getPublications = async () => {
+  //   setProgress(50);
+  //   if (project !== null) {
+  //     const params: IGetProjectPublications = {
+  //       id: project.id.toString(),
+  //       limit: 6,
+  //       page: activePage,
+  //       category: activeCategory !== null ? activeCategory : undefined,
+  //     };
+  //     const result = await api.project.publications(params);
+
+  //     setPublications(result);
+
+  //     setProgress(100);
+  //   }
+  // };
 
   useEffect(() => {
     getPublications();
-  }, [project, activePage, activeCategory]);
+  }, [project, activePage, activeCategory, getPublications]);
 
   useEffect(() => {
     if (id !== undefined) {

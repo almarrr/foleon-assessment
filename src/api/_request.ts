@@ -1,7 +1,6 @@
 import axios, { AxiosError, Method } from "axios";
 import { CONFIG } from "../config/config";
 import api from "./_api";
-const md5 = require("md5");
 
 interface IRequest {
   method: Method;

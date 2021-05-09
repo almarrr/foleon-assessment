@@ -11,9 +11,6 @@ export interface IGetProjectPublications {
 
 const project = {
   publications: async (data: IGetProjectPublications) => {
-    console.log(`publication data:`);
-    console.log(data);
-
     const { id, page, limit, category } = data;
 
     const filter: any[] = [];
